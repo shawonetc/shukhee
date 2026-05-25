@@ -14,13 +14,26 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff; /* We'll override this to maintain a clean bright medical theme */
+    --foreground: #171717;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #f8fafc; /* Tailwind slate-50 background for clean aesthetic */
+  color: #1e293b;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
