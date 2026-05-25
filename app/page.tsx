@@ -95,22 +95,22 @@ export default function Home() {
       <TrendingProducts addToCart={addToCart} />
 
       {/* TRUSTED PARTNER STATS */}
-      <TrustedStats />
+      {/* <TrustedStats /> */}
 
       {/* CAREGIVER AT HOME SERVICES */}
-      <CaregiverServices />
+      {/* <CaregiverServices /> */}
 
       {/* ESSENTIAL MEDICINE DELIVERY CAROUSEL */}
-      <EssentialMedicines addToCart={addToCart} />
+      {/* <EssentialMedicines addToCart={addToCart} />   */}
 
       {/* MEDICAL TOURISM & SURGERY BOOKING BANNERS */}
-      <TourismAndSurgery />
+      {/* <TourismAndSurgery /> */}
 
       {/* AMBULANCE & BLOOD BANK BLOCKS */}
-      <EmergencyBlocks />
+      {/* <EmergencyBlocks /> */}
 
       {/* SHUKHEE SHEBA KENDRA (SSK) */}
-      <SSKNetwork />
+      {/* <SSKNetwork /> */}
 
       {/* FEATURED BRANDS */}
       <FeaturedBrands />

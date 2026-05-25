@@ -29,7 +29,7 @@ export default function HeroSlider() {
 
   return (
     <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-      <div className="relative h-64 sm:h-80 md:h-[400px] rounded-3xl overflow-hidden shadow-md bg-slate-900">
+      <div className="relative h-32 sm:h-64 md:h-[350px] lg:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-md bg-slate-900">
         
         {/* SLIDES */}
         {HERO_SLIDES.map((slide, idx) => (
