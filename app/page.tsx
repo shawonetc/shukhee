@@ -68,15 +68,15 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-purple-100 selection:text-purple-800">
-      
+
       {/* GLOBAL HEADER */}
-      <Header 
-        lang={lang} 
-        setLang={setLang} 
-        searchQuery={searchQuery} 
-        setSearchQuery={setSearchQuery} 
-        cartTotalQty={cartTotalQty} 
-        setCartOpen={setCartOpen} 
+      <Header
+        lang={lang}
+        setLang={setLang}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        cartTotalQty={cartTotalQty}
+        setCartOpen={setCartOpen}
       />
 
       {/* HERO BANNER SLIDER */}
@@ -122,14 +122,14 @@ export default function Home() {
       <Footer />
 
       {/* DYNAMIC CART DRAWER PANEL */}
-      <CartDrawer 
-        isOpen={cartOpen} 
-        setIsOpen={setCartOpen} 
-        cart={cart} 
-        updateCartQty={updateCartQty} 
-        removeItem={removeItem} 
-        cartTotalQty={cartTotalQty} 
-        cartTotalPrice={cartTotalPrice} 
+      <CartDrawer
+        isOpen={cartOpen}
+        setIsOpen={setCartOpen}
+        cart={cart}
+        updateCartQty={updateCartQty}
+        removeItem={removeItem}
+        cartTotalQty={cartTotalQty}
+        cartTotalPrice={cartTotalPrice}
       />
 
       {/* MOBILE STICKY BOTTOM DOCTOR CALL WIDGET */}
