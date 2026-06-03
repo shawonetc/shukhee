@@ -67,7 +67,7 @@ export default function Header({
               <Link href="#" className="text-[13px] font-bold text-slate-600 hover:text-cyan-500 transition-colors">
                 Become a Provider
               </Link>
-              <Link href="#" className="text-[13px] font-bold text-slate-600 hover:text-cyan-500 transition-colors">
+              <Link href="/insights" className="text-[13px] font-bold text-slate-600 hover:text-cyan-500 transition-colors">
                 Shukhee Insights
               </Link>
               <Link 
@@ -237,7 +237,7 @@ export default function Header({
                 <span>Become a Provider</span>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
               </Link>
-              <Link href="#" onClick={() => setMobileMenuOpen(false)} className="hover:text-purple-600 flex items-center justify-between border-b border-slate-50 pb-2">
+              <Link href="/insights" onClick={() => setMobileMenuOpen(false)} className="hover:text-purple-600 flex items-center justify-between border-b border-slate-50 pb-2">
                 <span>Shukhee Insights</span>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
               </Link>

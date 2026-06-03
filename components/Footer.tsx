@@ -40,7 +40,7 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-extrabold text-white mb-6 uppercase tracking-wider">Telemedicine Services</h4>
             <ul className="space-y-3.5 text-xs text-slate-400 font-medium">
-              <li><Link href="#" className="hover:text-white transition-colors">Instant MBBS Call (৳50)</Link></li>
+              <li><Link href="/instant-mbbs" className="hover:text-white transition-colors">Instant MBBS Call (৳50)</Link></li>
               <li><Link href="/specialists" className="hover:text-white transition-colors">Book Specialists online</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Digital Prescription Log</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Home Diagnostic Collection</Link></li>

@@ -19,6 +19,7 @@ import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import MobileStickyWidget from "@/components/MobileStickyWidget";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
+import ShukheeInsightsSection from "@/components/ShukheeInsightsSection";
 
 export default function Home() {
   // State variables
@@ -93,6 +94,9 @@ export default function Home() {
 
       {/* TRENDING SKINCARE / PRODUCTS CAROUSEL */}
       <TrendingProducts addToCart={addToCart} />
+
+      {/* SHUKHEE INSIGHTS PREVIEW SECTION */}
+      <ShukheeInsightsSection />
 
       {/* TRUSTED PARTNER STATS */}
       {/* <TrustedStats /> */}

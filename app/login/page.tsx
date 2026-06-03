@@ -27,100 +27,29 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row relative overflow-hidden">
-      {/* Left Panel — Brand Hero */}
-      <div className="hidden lg:flex lg:w-[55%] relative bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-950 items-center justify-center p-12 overflow-hidden">
-        {/* Decorative floating orbs */}
-        <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-32 right-16 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-indigo-400/15 rounded-full blur-2xl" />
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-10 relative overflow-hidden">
+      {/* Subtle background decoration */}
+      <div className="absolute top-0 right-0 w-80 h-80 bg-purple-100/40 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-100/30 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Grid pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)`,
-            backgroundSize: "32px 32px",
-          }}
-        />
+      <div className="relative z-10 w-full max-w-md space-y-8">
+        {/* Back to home */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-purple-600 transition-colors group"
+        >
+          <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+          Back to Home
+        </Link>
 
-        <div className="relative z-10 max-w-lg text-center space-y-8">
-          {/* Logo */}
-          <Link href="/" className="inline-block group">
-            <h1 className="text-5xl font-extrabold tracking-tight text-white">
-              shukhee<span className="text-purple-400">.com</span>
-            </h1>
-            <svg
-              className="mx-auto w-44 h-3 text-cyan-400 mt-1 group-hover:text-cyan-300 transition-colors"
-              viewBox="0 0 100 10"
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M5,1 Q50,9 95,1"
-                stroke="currentColor"
-                strokeWidth="3"
-                fill="transparent"
-                strokeLinecap="round"
-              />
-            </svg>
-          </Link>
-
-          <h2 className="text-3xl font-black text-white leading-tight tracking-tight">
-            Your trusted digital
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300">
-              healthcare partner
+        {/* Logo */}
+        <div className="text-center">
+          <Link href="/" className="inline-block">
+            <span className="text-3xl font-extrabold text-slate-900">
+              shukhee<span className="text-purple-600">.com</span>
             </span>
-          </h2>
-
-          <p className="text-sm text-slate-300/80 font-medium leading-relaxed max-w-md mx-auto">
-            Access instant MBBS consultations, order medicines, book specialist
-            doctors, and manage your complete health profile — all from one
-            platform.
-          </p>
-
-          {/* Trust badges */}
-          <div className="flex items-center justify-center gap-6 pt-4">
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full py-2 px-4">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span className="text-xs font-bold text-slate-200">
-                3.4M+ Consults
-              </span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full py-2 px-4">
-              <span className="w-2 h-2 rounded-full bg-cyan-400" />
-              <span className="text-xs font-bold text-slate-200">
-                64 Districts
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Right Panel — Login Form */}
-      <div className="flex-1 flex items-center justify-center bg-slate-50 px-4 py-10 lg:py-0 relative">
-        {/* Subtle background decoration */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-purple-100/40 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-100/30 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative z-10 w-full max-w-md space-y-8">
-          {/* Back to home */}
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-purple-600 transition-colors group"
-          >
-            <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-            Back to Home
           </Link>
-
-          {/* Mobile Logo */}
-          <div className="lg:hidden text-center">
-            <Link href="/" className="inline-block">
-              <span className="text-3xl font-extrabold text-slate-900">
-                shukhee<span className="text-purple-600">.com</span>
-              </span>
-            </Link>
-          </div>
+        </div>
 
           {/* Header */}
           <div>
@@ -300,15 +229,7 @@ export default function LoginPage() {
               Create free account
             </Link>
           </p>
-
-          {/* Footer trust */}
-          <div className="text-center pt-4 border-t border-slate-100">
-            <p className="text-[10px] text-slate-400 font-semibold">
-              🔒 Protected by 256-bit SSL encryption • DGDA Approved Platform
-            </p>
-          </div>
         </div>
       </div>
-    </div>
   );
 }
