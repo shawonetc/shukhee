@@ -6,12 +6,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const HERO_SLIDES = [
   {
     id: 1,
-    image: "https://shukhee-public-bucket.s3.ap-southeast-1.amazonaws.com/slider/url-1775975851991-931852849.jpeg",
+    image: "/slider/1.png",
     alt: "Shukhee Medical Consultation Banner"
   },
   {
     id: 2,
-    image: "https://shukhee-public-bucket.s3.ap-southeast-1.amazonaws.com/slider/url-1775975851991-931852849.jpeg",
+    image: "/slider/2.png",
     alt: "Shukhee Care Home Deliveries"
   }
 ];
@@ -29,15 +29,14 @@ export default function HeroSlider() {
 
   return (
     <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-      <div className="relative h-32 sm:h-64 md:h-[350px] lg:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-md bg-slate-900">
-        
+      <div className="relative w-full aspect-[2/1] rounded-2xl sm:rounded-3xl overflow-hidden shadow-md bg-white">
+
         {/* SLIDES */}
         {HERO_SLIDES.map((slide, idx) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-300 ${
-              idx === activeSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-            }`}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-300 ${idx === activeSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+              }`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -68,9 +67,8 @@ export default function HeroSlider() {
             <button
               key={idx}
               onClick={() => setActiveSlide(idx)}
-              className={`h-2.5 rounded-full transition-all ${
-                idx === activeSlide ? "w-6 bg-white" : "w-2.5 bg-white/50 hover:bg-white/80"
-              }`}
+              className={`h-2.5 rounded-full transition-all ${idx === activeSlide ? "w-6 bg-white" : "w-2.5 bg-white/50 hover:bg-white/80"
+                }`}
             />
           ))}
         </div>

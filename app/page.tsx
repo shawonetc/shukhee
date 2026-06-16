@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import HeroSlider from "@/components/HeroSlider";
 import QuickConsultations from "@/components/QuickConsultations";
@@ -22,11 +23,24 @@ import WhatsAppWidget from "@/components/WhatsAppWidget";
 import ShukheeInsightsSection from "@/components/ShukheeInsightsSection";
 
 export default function Home() {
+  const router = useRouter();
   // State variables
   const [lang, setLang] = useState<"EN" | "BN">("EN");
   const [cart, setCart] = useState<{ [key: string]: { id: string; name: string; price: number; qty: number } }>({});
   const [searchQuery, setSearchQuery] = useState("");
   const [cartOpen, setCartOpen] = useState(false);
+
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem("shukhee_cart");
+    if (savedCart) {
+      try {
+        setCart(JSON.parse(savedCart));
+      } catch (e) {
+        console.error("Failed to parse cart from localStorage", e);
+      }
+    }
+  }, []);
 
   // Cart operations
   const addToCart = (product: { id: string; name: string; price: number }) => {
@@ -37,9 +51,10 @@ export default function Home() {
       } else {
         updated[product.id] = { id: product.id, name: product.name, price: product.price, qty: 1 };
       }
+      localStorage.setItem("shukhee_cart", JSON.stringify(updated));
       return updated;
     });
-    setCartOpen(true);
+    router.push("/checkout");
   };
 
   const updateCartQty = (id: string, delta: number) => {
@@ -52,6 +67,7 @@ export default function Home() {
       } else {
         updated[id] = { ...updated[id], qty: newQty };
       }
+      localStorage.setItem("shukhee_cart", JSON.stringify(updated));
       return updated;
     });
   };
@@ -60,6 +76,7 @@ export default function Home() {
     setCart((prev) => {
       const updated = { ...prev };
       delete updated[id];
+      localStorage.setItem("shukhee_cart", JSON.stringify(updated));
       return updated;
     });
   };

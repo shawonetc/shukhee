@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { ShoppingCart, X, Minus, Plus, Trash2, ArrowRight } from "lucide-react";
 
 interface CartItem {
@@ -121,10 +122,14 @@ export default function CartDrawer({
               </div>
             </div>
 
-            <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-sm py-3.5 rounded-2xl transition-all shadow-md flex items-center justify-center gap-2">
+            <Link 
+              href="/checkout"
+              onClick={() => setIsOpen(false)}
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-sm py-3.5 rounded-2xl transition-all shadow-md flex items-center justify-center gap-2"
+            >
               <span>Checkout & Buy Now</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
         )}
 

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ChevronDown, Search, Phone, ShoppingCart, User, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
@@ -164,6 +165,7 @@ const SPECIALISTS_DATA = [
 const UNIQUE_SPECIALTIES = Array.from(new Set(SPECIALISTS_DATA.map(d => d.specialty)));
 
 export default function SpecialistsPage() {
+  const router = useRouter();
   const [lang, setLang] = useState<"EN" | "BN">("EN");
   const [cart, setCart] = useState<{ [key: string]: { id: string; name: string; price: number; qty: number } }>({});
   const [searchQuery, setSearchQuery] = useState("");
@@ -172,6 +174,18 @@ export default function SpecialistsPage() {
   // Redesign filter state
   const [selectedSpecialty, setSelectedSpecialty] = useState("all");
   const [doctorNameQuery, setDoctorNameQuery] = useState("");
+
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem("shukhee_cart");
+    if (savedCart) {
+      try {
+        setCart(JSON.parse(savedCart));
+      } catch (e) {
+        console.error("Failed to parse cart from localStorage", e);
+      }
+    }
+  }, []);
 
   // Cart operations
   const addToCart = (product: { id: string; name: string; price: number }) => {
@@ -182,9 +196,10 @@ export default function SpecialistsPage() {
       } else {
         updated[product.id] = { id: product.id, name: product.name, price: product.price, qty: 1 };
       }
+      localStorage.setItem("shukhee_cart", JSON.stringify(updated));
       return updated;
     });
-    setCartOpen(true);
+    router.push("/checkout");
   };
 
   const updateCartQty = (id: string, delta: number) => {
@@ -197,6 +212,7 @@ export default function SpecialistsPage() {
       } else {
         updated[id] = { ...updated[id], qty: newQty };
       }
+      localStorage.setItem("shukhee_cart", JSON.stringify(updated));
       return updated;
     });
   };
@@ -205,6 +221,7 @@ export default function SpecialistsPage() {
     setCart((prev) => {
       const updated = { ...prev };
       delete updated[id];
+      localStorage.setItem("shukhee_cart", JSON.stringify(updated));
       return updated;
     });
   };
@@ -233,39 +250,6 @@ export default function SpecialistsPage() {
         setCartOpen={setCartOpen}
       />
 
-      {/* CLEAN SUB-NAVIGATION BAR (EXACT MATCH TO THE MOCKUP) */}
-      <div className="w-full bg-white border-b border-slate-100 py-3 shadow-3xs overflow-x-auto scrollbar-none">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center gap-6 sm:gap-8 whitespace-nowrap text-xs font-semibold text-slate-600">
-          <Link href="/" className="hover:text-cyan-500 transition-colors">
-            Home
-          </Link>
-          <Link href="/instant-mbbs" className="hover:text-cyan-500 transition-colors">
-            Instant MBBS Doctor
-          </Link>
-          <Link 
-            href="/specialists" 
-            className="text-cyan-500 border-b-2 border-cyan-500 pb-3 font-bold transition-all"
-          >
-            Specialist Doctor
-          </Link>
-          <Link href="/healthstore" className="hover:text-cyan-500 transition-colors">
-            Shukhee HealthStore
-          </Link>
-          <Link href="#" className="hover:text-cyan-500 transition-colors">
-            HomeLab Test
-          </Link>
-          <Link href="#" className="hover:text-cyan-500 transition-colors">
-            Mental Wellness
-          </Link>
-          <Link href="#" className="hover:text-cyan-500 transition-colors">
-            Surgery Booking
-          </Link>
-          <button className="hover:text-cyan-500 flex items-center gap-1 transition-colors focus:outline-none">
-            <span>Others</span>
-            <ChevronDown className="w-3.5 h-3.5" />
-          </button>
-        </div>
-      </div>
 
       {/* FILTER & INPUT CONTROLS SECTION */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">

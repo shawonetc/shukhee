@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ChevronDown, Search, Phone, ShoppingCart, User, ArrowRight, MessageSquare, Clipboard, FileText, Star, Percent } from "lucide-react";
 import Header from "@/components/Header";
@@ -157,10 +158,23 @@ const HEALTHSTORE_PRODUCTS = [
 ];
 
 export default function HealthStorePage() {
+  const router = useRouter();
   const [lang, setLang] = useState<"EN" | "BN">("EN");
   const [cart, setCart] = useState<{ [key: string]: { id: string; name: string; price: number; qty: number } }>({});
   const [searchQuery, setSearchQuery] = useState("");
   const [cartOpen, setCartOpen] = useState(false);
+
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem("shukhee_cart");
+    if (savedCart) {
+      try {
+        setCart(JSON.parse(savedCart));
+      } catch (e) {
+        console.error("Failed to parse cart from localStorage", e);
+      }
+    }
+  }, []);
 
   // Cart operations
   const addToCart = (product: { id: string; name: string; price: number }) => {
@@ -171,9 +185,10 @@ export default function HealthStorePage() {
       } else {
         updated[product.id] = { id: product.id, name: product.name, price: product.price, qty: 1 };
       }
+      localStorage.setItem("shukhee_cart", JSON.stringify(updated));
       return updated;
     });
-    setCartOpen(true);
+    router.push("/checkout");
   };
 
   const updateCartQty = (id: string, delta: number) => {
@@ -186,6 +201,7 @@ export default function HealthStorePage() {
       } else {
         updated[id] = { ...updated[id], qty: newQty };
       }
+      localStorage.setItem("shukhee_cart", JSON.stringify(updated));
       return updated;
     });
   };
@@ -194,6 +210,7 @@ export default function HealthStorePage() {
     setCart((prev) => {
       const updated = { ...prev };
       delete updated[id];
+      localStorage.setItem("shukhee_cart", JSON.stringify(updated));
       return updated;
     });
   };
@@ -214,39 +231,6 @@ export default function HealthStorePage() {
         setCartOpen={setCartOpen}
       />
 
-      {/* CLEAN SUB-NAVIGATION BAR */}
-      <div className="w-full bg-white border-b border-slate-100 py-3 shadow-3xs overflow-x-auto scrollbar-none">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center gap-6 sm:gap-8 whitespace-nowrap text-xs font-semibold text-slate-600">
-          <Link href="/" className="hover:text-cyan-500 transition-colors">
-            Home
-          </Link>
-          <Link href="/instant-mbbs" className="hover:text-cyan-500 transition-colors">
-            Instant MBBS Doctor
-          </Link>
-          <Link href="/specialists" className="hover:text-cyan-500 transition-colors">
-            Specialist Doctor
-          </Link>
-          <Link 
-            href="/healthstore" 
-            className="text-cyan-500 border-b-2 border-cyan-500 pb-3 font-bold transition-all"
-          >
-            Shukhee HealthStore
-          </Link>
-          <Link href="#" className="hover:text-cyan-500 transition-colors">
-            HomeLab Test
-          </Link>
-          <Link href="#" className="hover:text-cyan-500 transition-colors">
-            Mental Wellness
-          </Link>
-          <Link href="#" className="hover:text-cyan-500 transition-colors">
-            Surgery Booking
-          </Link>
-          <button className="hover:text-cyan-500 flex items-center gap-1 transition-colors focus:outline-none">
-            <span>Others</span>
-            <ChevronDown className="w-3.5 h-3.5" />
-          </button>
-        </div>
-      </div>
 
       {/* PURPLE HERO BANNER (MATCHES THE IMAGE EXACTLY WITH BENGALI TEXT & ORIGINAL EMBLEMS) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
